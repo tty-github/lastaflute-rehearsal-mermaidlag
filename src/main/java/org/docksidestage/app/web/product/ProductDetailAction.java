@@ -28,7 +28,6 @@ import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
-import org.lastaflute.web.response.next.HtmlNext;
 
 /**
  * @author jflute
@@ -51,7 +50,7 @@ public class ProductDetailAction extends MermaidlagBaseAction {
     @Execute
     public HtmlResponse index(Integer productId) {
         validate(productId, messages -> {} , () -> {
-            return asHtml(new HtmlNext("/product/product_list.xhtml"));
+            return asHtml(path_Product_ProductListHtml);
         });
         Product product = selectProduct(productId);
         List<ProductDetailBean> productList =

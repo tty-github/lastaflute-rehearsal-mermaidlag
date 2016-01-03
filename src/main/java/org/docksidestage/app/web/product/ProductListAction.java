@@ -27,7 +27,6 @@ import org.docksidestage.dbflute.exentity.Product;
 import org.lastaflute.web.Execute;
 import org.lastaflute.web.login.AllowAnyoneAccess;
 import org.lastaflute.web.response.HtmlResponse;
-import org.lastaflute.web.response.next.HtmlNext;
 
 /**
  * @author jflute
@@ -47,7 +46,7 @@ public class ProductListAction extends MermaidlagBaseAction {
     @Execute
     public HtmlResponse index(OptionalThing<Integer> pageNumber, ProductSearchForm form) {
         validate(form, messages -> {} , () -> {
-            return asHtml(new HtmlNext("/product/product_list.xhtml"));
+            return asHtml(path_Product_ProductListHtml);
         });
         PagingResultBean<Product> page = selectProductPage(pageNumber.orElse(1), form);
         List<ProductSearchRowBean> beans = page.mappingList(product -> {
