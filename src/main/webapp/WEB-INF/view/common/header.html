@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<section id="RENDERED" class="nav-main cf">
+	<div class="wrap">
+		<h1 class="main-title"><a th:href="@{/}" href="#">Mermaidlag<span> (LastaFlute Example)</span></a></h1>
+		<ul class="nav-home">
+			<li><a th:href="@{/product/list/}" href="../product/product_list.html"><span class="link-block">Products</span></a></li>
+			<li><a th:href="@{/member/list/}" href="../member/member_list.html"><span class="link-block">Members</span></a></li>
+			<li><a th:href="@{/withdrawal/}" href="../withdrawal/withdrawal.html"><span class="link-block">Withdrawal</span></a></li>
+		</ul>
+		<ul class="nav-user">
+			<li>
+				<p th:if="${headerBean.isLogin}" class="nameHeader" th:text="'Hello, ' + ${headerBean.memberName}">Hello, ${headerBean.memberName}</p>
+				<p th:unless="${headerBean.isLogin}" class="nameHeader">Welcome, Mr.Guest</p>
+				<ul class="child">
+					<li><a th:href="@{/profile/}" href="#">Profile</a></li>
+					<li><a th:href="@{/signout/}" href="#">Sign out</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
+</html>
