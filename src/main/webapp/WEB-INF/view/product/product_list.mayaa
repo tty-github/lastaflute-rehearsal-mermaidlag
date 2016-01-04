@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <m:mayaa xmlns:m="http://mayaa.seasar.org">
 	<m:insert id="common.HEADER_HERE" path="../common/header.html" />
-    <m:write m:id="LIST_TITLE" value="Hello Mayaa!" />
-    <m:write m:id="LABEL_PRODUCT_NAME" value="Product Name" />
+	<m:write m:id="LIST_TITLE" value="Hello Mayaa!" />
+	<m:write m:id="LABEL_PRODUCT_NAME" value="Product Name" />
 </m:mayaa>
