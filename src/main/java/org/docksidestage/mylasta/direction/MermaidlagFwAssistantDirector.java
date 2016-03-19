@@ -36,8 +36,6 @@ import org.lastaflute.core.security.OneWayCryptographer;
 import org.lastaflute.db.dbflute.classification.ListedClassificationProvider;
 import org.lastaflute.db.direction.FwDbDirection;
 import org.lastaflute.mayaa.MayaaRenderingProvider;
-import org.lastaflute.mayaa.policy.LaMayaaPolicy;
-import org.lastaflute.thymeleaf.ThymeleafRenderingProvider;
 import org.lastaflute.web.direction.FwWebDirection;
 import org.lastaflute.web.response.HtmlResponse;
 import org.lastaflute.web.ruts.NextJourney;
@@ -158,18 +156,12 @@ public class MermaidlagFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected HtmlRenderingProvider createHtmlRenderingProvider() {
         // #thiking: if all htmls are for mayaa, can we remove this?
-        final ThymeleafRenderingProvider thymeleaf = createThymeleafRenderingProvider();
         final MayaaRenderingProvider mayaa = createMayaaRenderingProvider();
-        final LaMayaaPolicy policy = new LaMayaaPolicy();
         return new HtmlRenderingProvider() {
 
             @Override
             public HtmlRenderer provideRenderer(ActionRuntime runtime, NextJourney journey) {
-                return chooseRenderingProvider(runtime, journey).provideRenderer(runtime, journey);
-            }
-
-            private HtmlRenderingProvider chooseRenderingProvider(ActionRuntime runtime, NextJourney journey) {
-                return policy.isMayaaTemplate(journey.getRoutingPath()) ? mayaa : thymeleaf;
+                return mayaa.provideRenderer(runtime, journey);
             }
 
             @Override
@@ -181,9 +173,5 @@ public class MermaidlagFwAssistantDirector extends CachedFwAssistantDirector {
 
     protected MayaaRenderingProvider createMayaaRenderingProvider() { // for #mayaa
         return new MayaaRenderingProvider().asDevelopment(mermaidlagConfig.isDevelopmentHere());
-    }
-
-    protected ThymeleafRenderingProvider createThymeleafRenderingProvider() { // will be deleted
-        return new ThymeleafRenderingProvider().asDevelopment(mermaidlagConfig.isDevelopmentHere());
     }
 }

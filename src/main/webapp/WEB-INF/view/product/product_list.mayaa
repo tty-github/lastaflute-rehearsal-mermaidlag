@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<m:mayaa xmlns:m="http://mayaa.seasar.org">
-	<m:write m:id="LIST_TITLE" value="Hello Mayaa!" />
-	<m:write m:id="LABEL_PRODUCT_NAME" value="Product Name" />
+<m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:la="http://lastaflute.org/latags">
+	<m:beforeRender>
+	<![CDATA[
+		var common_title = "List of Product";
+	]]>
+	</m:beforeRender>
+	<la:caption m:id="listTitle" key="labels.product.list.title" />
+	<la:caption m:id="labels.SearchCondition" key="labels.search.condition" />
+	<la:form m:id="form" />
+	<la:errors m:id="errors" />
+
+	<la:text m:id="productName" property="productName" />
+	<la:text m:id="purchaseMemberName" property="purchaseMemberName" />
+	<la:submit m:id="submit" value="labels.search" />
+
+	<la:caption m:id="labels.product.status" key="labels.productStatus"
+		m:replace="false" />
+	<la:select m:id="productStatus" property="productStatus" />
+	<la:option m:id="listbox.caption.tell" key="labels.listbox.caption.tell"
+		value="" />
+	<la:optionCls m:id="productStatusOptions" name="ProductStatus"></la:optionCls>
+
+	<la:caption m:id="labels.searchResult" key="labels.search.result" />
+	<m:forEach m:id="listLoop" items="${ beans }" var="bean" />
+	<m:write m:id="productId" value="${ bean.productId }" />
+	<la:link m:id="productNameLink" href="/product/detail/${ bean.productId }">
+		<m:write value="${ bean.productName }" />
+	</la:link>
+	<m:write m:id="bean.productStatus" value="${ bean.productStatus }" />
+	<m:write m:id="regularPrice" value="${ bean.regularPrice }" />
+	<m:write m:id="productCategory" value="${ bean.productCategory }" />
+	<m:write m:id="latestPurchaseDate" value="${ bean.latestPurchaseDate }" />
+
+	<m:insert m:id="pagingNavi" path="/common/layout.html" name="paging-navi" />
 </m:mayaa>

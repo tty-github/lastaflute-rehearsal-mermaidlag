@@ -18,7 +18,6 @@
 		<h2.jdbc.version>1.4.190</h2.jdbc.version>
 		<lastaflute.version>0.8.2</lastaflute.version>
 		<lasta.mayaa.version>0.2.0-D-SNAPSHOT</lasta.mayaa.version> <!-- for #mayaa -->
-		<lasta.thymeleaf.version>0.2.7</lasta.thymeleaf.version> <!-- will be deleted -->
 
 		<!-- Partner Library -->
 		<slf4j.version>1.7.12</slf4j.version>
@@ -248,11 +247,6 @@
 			<artifactId>lasta-mayaa</artifactId>
 			<version>${lasta.mayaa.version}</version>
 		</dependency>
-		<dependency> <!-- will be deleted -->
-			<groupId>org.lastaflute.html</groupId>
-			<artifactId>lasta-thymeleaf</artifactId>
-			<version>${lasta.thymeleaf.version}</version>
-		</dependency>
 
 		<!-- servlet -->
 		<dependency> <!-- for #mayaa -->
@@ -297,7 +291,7 @@
 			<artifactId>jetty-boot</artifactId>
 			<version>${jetty.boot.version}</version>
 		</dependency>
- 
+
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                          GoodNeighbor Library -->
 		<!--                                                           = = = = = = = = = = -->

@@ -20,6 +20,7 @@ import org.lastaflute.core.util.ContainerUtil;
 import org.lastaflute.mayaa.policy.LaMayaaPolicy;
 import org.lastaflute.web.path.ActionAdjustmentProvider;
 import org.lastaflute.web.ruts.config.ActionMapping;
+import org.lastaflute.web.util.LaServletContextUtil;
 
 /**
  * @author jflute
@@ -32,10 +33,28 @@ public class MermaidlagActionAdjustmentProvider implements ActionAdjustmentProvi
     // _/_/_/_/_/_/_/_/_/_/
 
     @Override
+    public String customizeActionMappingRequestPath(String requestPath) {
+        String viewPrefix = LaServletContextUtil.getHtmlViewPrefix();
+        if (viewPrefix == null) {
+            return requestPath;
+        }
+        if (requestPath.startsWith(viewPrefix)) {
+            requestPath = requestPath.substring(viewPrefix.length());
+        }
+        return requestPath;
+    }
+
+    @Override
     public String filterHtmlPath(String path, ActionMapping actionMapping) { // for #mayaa
         // #thiking: if all htmls are for mayaa, can we remove this?
         final LaMayaaPolicy policy = ContainerUtil.getComponent(LaMayaaPolicy.class); // #for_now: want to cache
-        return policy.isMayaaTemplate(path) ? policy.prepareMayaalikeHtmlPath(path) : null;
+        if (policy.isMayaaTemplate(path)) {
+            final String viewPrefix = LaServletContextUtil.getHtmlViewPrefix();
+            if (viewPrefix != null) {
+                path = viewPrefix + path; // e.g. /WEB-INF/view/...
+            }
+        }
+        return path;
     }
 
     @Override

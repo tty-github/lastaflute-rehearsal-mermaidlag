@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mayaa xmlns:m="http://mayaa.seasar.org" xmlns:la="http://lastaflute.org/latags">
+	<!-- head -->
+	<m:doRender m:id="head" name="head" />
+	<m:write m:id="title" value="${ common_title } | Mermaidlag"
+		replace="false" />
+
+	<!-- header -->
+	<m:doRender m:id="header" name="header" />
+	<la:link m:id="topLink" href="/" />
+	<la:link m:id="productListLink" href="/product/list/" />
+	<m:if m:id="isLogin" test="${ headerBean.isLogin }">
+		<m:echo>
+			<m:write value="Hello, ${ headerBean.memberName }" />
+		</m:echo>
+	</m:if>
+	<m:if m:id="isNotLogin" test="${ headerBean.isLogin == false }">
+		<m:echo>
+			<m:doBody />
+		</m:echo>
+	</m:if>
+
+	<!-- pagingNavi -->
+	<m:doRender m:id="paging-navi" name="paging-navi" />
+	<m:write m:id="currentPageNumber" value="${ pagingNavi.currentPageNumber }" />
+	<m:write m:id="allPageCount" value="${ pagingNavi.allPageCount }" />
+	<m:write m:id="allRecordCount" value="${ pagingNavi.allRecordCount }" />
+	<m:if m:id="existsPreviousPage" test="${ pagingNavi.existsPreviousPage }" />
+	<la:link m:id="previousPageLink" href="${ pagingNavi.previousPageLinkHref }" />
+
+	<m:forEach m:id="pageNumberLinkLoop" items="${ pagingNavi.pageNumberLinkList }"
+		var="link" />
+	<m:if m:id="pageNumberLink" test="${ link.current == false }">
+		<m:echo>
+			<la:link href="${ link.pageNumberLinkHref }">
+				<m:write value="${ link.pageNumberElement }" />
+			</la:link>
+		</m:echo>
+	</m:if>
+	<m:if m:id="pageNumberNoLink" test="${ link.current }">
+		<m:echo>
+			<m:write value="${ link.pageNumberElement }" />
+		</m:echo>
+	</m:if>
+
+	<m:if m:id="existsNextPage" test="${ pagingNavi.existsNextPage }" />
+	<la:link m:id="nextPageLink" href="${ pagingNavi.nextPageLinkHref }" />
+
+	<!-- footer -->
+	<m:doRender m:id="footer" name="footer" />
+
+	<!-- afterScript -->
+	<m:doRender m:id="afterScript" name="afterScript" />
+</m:mayaa>

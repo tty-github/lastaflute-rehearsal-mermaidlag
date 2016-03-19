@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <m:mayaa xmlns:m="http://mayaa.seasar.org">
-	<m:insert m:id="common.HEADER_HERE" path="/common/header.html" />
+	<m:beforeRender>
+	<![CDATA[
+	function debug(value) {
+    	java.lang.System.out.println("DEBUG:" + value);
+    	return value;
+	}
+	]]>
+	</m:beforeRender>
+
+	<m:insert m:id="common.head" path="/WEB-INF/view/common/layout.html"
+		name="head" replace="false" />
+	<m:insert m:id="common.header" path="/WEB-INF/view/common/layout.html"
+		name="header" replace="false" />
+
+	<m:insert m:id="common.footer" path="/WEB-INF/view/common/layout.html"
+		name="footer" replace="false" />
+	<m:insert m:id="common.afterScript" path="/WEB-INF/view/common/layout.html"
+		name="afterScript" replace="false" />
 </m:mayaa>
+

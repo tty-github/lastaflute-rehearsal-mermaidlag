@@ -1,8 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:m="http://mayaa.seasar.org">
+<head m:id="common.head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/reset.css" ></link>
+	<link rel="stylesheet" type="text/css" href="./../../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="./../../../css/individual.css" />
+	<title>Preview Title</title>
+</head>
 <body>
-	<header id="common.HEADER_HERE">header here</header>
-	<h2 id="LIST_TITLE">title here</h2>
-	<span id="LABEL_PRODUCT_NAME"></span>
+<header m:id="common.header">
+</header>
+<main>
+<div class="contents">
+	<h2 class="content-title"><span m:id="listTitle">title here</span></h2>
+	<section class="product-search-box">
+		<h3 class="content-title-second"><span m:id="labels.SearchCondition">labels.search.condition</span></h3>
+		<form m:id="form" method="get" class="product-search-form">
+			<div m:id="errors"></div>
+			<ul class="product-search-condition-list">
+				<li><span>Product Name</span><input m:id="productName" type="text"/></li>
+				<li>
+					<span m:id="labels.product.status">Pproduct Status</span>
+					<select m:id="productStatus">
+						<option m:id="listbox.caption.tell" label="select" value=""/>
+						<option m:id="productStatusOptions"/>
+					</select>
+				</li>
+				<li><span>Purchased Member</span><input m:id="purchaseMemberName" type="text"/></li>
+			</ul>
+			<input m:id="submit" type="submit" value="labels.search"/>
+		</form>
+	</section>
+	<section class="product-result-box">
+		<h3 class="content-title-second"><span m:id="labels.searchResult">Search Results</span></h3>
+		<table class="list-tbl">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Product Name</th>
+					<th>Status</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>Latest Purchase</th>
+				</tr>
+			</thead>
+			<tbody m:id="listLoop">
+				<tr>
+					<td><span m:id="productId"></span></td>
+					<td><a m:id="productNameLink" href="#">Name</a></td>
+					<td><span m:id="bean.productStatus"></span></td>
+					<td><span m:id="productCategory"></span></td>
+					<td><span m:id="regularPrice"></span></td>
+					<td><span m:id="latestPurchaseDate"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<section class="product-list-paging-box">
+			<div m:id="pagingNavi"></div>
+		</section>
+	</section>
+</div>
+</main>
+<footer m:id="common.footer">
+</footer>
+<div m:id="common.afterScript">
+</div>
 </body>
 </html>
